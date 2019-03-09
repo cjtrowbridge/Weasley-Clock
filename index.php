@@ -8,29 +8,19 @@ if(file_exists('Config.php')){
 
 if(
   isset($_GET['key'])&&
-  ($Key==$_GET['key'])&&
-  (
-    $_GET['position']=='home' ||
-    $_GET['position']=='away'
-  )&&(
-    $_GET['person']=='CJ' ||
-    $_GET['person']=='Ben' ||
-    $_GET['person']=='Zach' ||
-    $_GET['person']=='Jenny'
-  )
+  isset($_GET['person'])&&
+  isset($_GET['place'])
 ){
-
-  switch($_GET['person']){
-    case 'Ben':
-    case 'Zach':
-    case 'CJ':
-    case 'Jenny':
-      echo '<p>Updating <a href="people/'.$_GET['person'].'.txt">people/'.$_GET['person'].'.txt</a> to '.$_GET['position'].'...</p>';
-      var_dump(file_put_contents('people/'.$_GET['person'].'.txt',$_GET['position']));
-      die('<p>Done.</p>');
+  if(
+    isset( $People[ $_GET['person'] ] ) &&
+    isset( $Places[ $_GET['place'] ] ) &&
+    ( $People['Key']==$_GET['key'] )
+  ){
+    echo '<p>Updating <a href="people/'.$_GET['person'].'.txt">people/'.$_GET['person'].'.txt</a> to '.$_GET['place'].'...</p>';
+    var_dump(file_put_contents('people/'.$_GET['person'].'.txt',$_GET['place']));
+    die('<p>Done.</p>');
   }
 }
-
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -41,7 +31,7 @@ if(
   <meta name="author" content="">
   <link rel="icon" href="/favicon.ico">
 
-  <title>CJTrowbridge - Weasley Clock</title>
+  <title>Weasley Clock</title>
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 
@@ -69,7 +59,7 @@ if(
 
 <div class="container">
   <div class="row">
-    <div class="col-12">
+    <div class="col-12 col-md-9">
       <h1>Weasley Clock v1.0</h1>
       <div class="card">
         <div class="card-header">
@@ -88,7 +78,19 @@ if(
           <div id="away"></div>
         </div><!--/card-body-->
       </div><!--/card-->
-    </div><!--/col-12-->
+    </div><!--/col-12  col-md-3-->
+    
+    <div class="col-12 col-md-3">
+      <div class="card">
+        <div class="card-header">
+          Log
+        </div>
+        <div class="card-body">
+          <div id="log"></div>
+        </div><!--/card-body-->
+      </div><!--/card-->
+    </div><!--/col-12  col-md-3-->
+    
   </div><!--/row-->
 </div><!--/container-->
 
@@ -104,6 +106,11 @@ function LocatePeople(){
   $('#home').html('');
   $('#away').html('');
 
+  console.log('Fetching Log...');
+  $.get( "people/log.txt?"+$.now(), function(data){
+    $('#log').html('data');
+  }
+  
   console.log("Checking...");
   $.each([ 'Ben','Zach', 'Jenny', 'CJ' ], function( index, person ) {
     $.get( "people/"+person+".txt?"+$.now(), function(data){
