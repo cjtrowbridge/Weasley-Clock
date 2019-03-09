@@ -128,7 +128,7 @@ function LocatePeople(){
   console.log('Fetching Log...');
   $.get( "people/log.txt?"+$.now(), function(data){
     $('#log').html('data');
-  }
+  });
   
   console.log("Checking...");
   $.each([<?php
