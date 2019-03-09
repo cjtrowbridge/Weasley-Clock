@@ -78,8 +78,12 @@ if(
 
 <div class="container">
   <div class="row">
-    <div class="col-12 col-md-9">
+    
+    <div class="col-12">
       <h1>Weasley Clock v1.0</h1>
+    </div>
+    
+    <div class="col-12 col-md-8">
       <div class="card">
         <div class="card-header">
           Home
@@ -97,9 +101,9 @@ if(
           <div id="away"></div>
         </div><!--/card-body-->
       </div><!--/card-->
-    </div><!--/col-12  col-md-3-->
+    </div><!--/col-12  col-md-4-->
     
-    <div class="col-12 col-md-3">
+    <div class="col-12 col-md-4">
       <div class="card">
         <div class="card-header">
           Log
@@ -108,7 +112,7 @@ if(
           <div id="log"></div>
         </div><!--/card-body-->
       </div><!--/card-->
-    </div><!--/col-12  col-md-3-->
+    </div><!--/col-12  col-md-4-->
     
   </div><!--/row-->
 </div><!--/container-->
