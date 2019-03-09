@@ -1,6 +1,10 @@
 <?php
 
-$Key = "PZdE6XB1f8yp73VONDV5EQsaaZn6x3AV";
+if(file_exists('Key.php')){
+  include('Key.php');
+}else{
+  die('Create Key.php from Key.sample.php');
+}
 
 if(
   isset($_GET['key'])&&
