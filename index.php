@@ -135,6 +135,8 @@ if(
 <script>
 
 function LocatePeople(){
+  
+  $('<div class="person">').remove();
 
   $('#home').html('');
   $('#away').html('');
