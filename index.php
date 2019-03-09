@@ -48,7 +48,7 @@ if(
     
     file_put_contents('people/log.txt',$Log);
       
-    die('<p>Done.</p>');
+    die($LogEntry.'<p>Done.</p>');
   }
 }
 
