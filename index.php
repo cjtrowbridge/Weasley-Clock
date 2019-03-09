@@ -7,14 +7,14 @@ if(file_exists('Config.php')){
 }
 
 if(
-  isset($_GET['key'])&&
-  isset($_GET['person'])&&
+  isset($_GET['key']) &&
+  isset($_GET['person']) &&
   isset($_GET['place'])
 ){
   if(
     isset( $People[ $_GET['person'] ] ) &&
     isset( $Places[ $_GET['place'] ] ) &&
-    ( $People['Key']==$_GET['key'] )
+    ( $People['Key'] == $_GET['key'] )
   ){
     //"Away" includes transit between routers. Everyone becomes away in between destinations. Maybe another name would be better(?)
     
@@ -26,7 +26,8 @@ if(
     }
     $LogEntry .= '</p>';
     
-    file_put_contents('people/'.$_GET['person'].'.txt',$_GET['place']);
+    //Update the file tracking each person's current location
+    file_put_contents('people/'.$_GET['person'].'.txt', $_GET['place']);
     
     if(file_exists('people/log.txt')){
       $Log = file_get_contents('people/log.txt');
@@ -150,8 +151,7 @@ function LocatePeople(){
         var position = 'away';
       }
       console.log(person+" is "+position+'('+data+')');
-      //$('<div class="person"><a href="#"><!--'+person+'<br>--><img src="/img/'+person.toString().toLowerCase()+'.jpg" alt=""></a></div>').hide().appendTo("#"+position).show();
-
+      
       $('<div class="person"><a href="#"><!--'+person+'<br>--><img src="/img/'+person.toString().toLowerCase()+'.jpg" alt=""></a></div>').appendTo("#"+position);
 
       ResizePeople();
