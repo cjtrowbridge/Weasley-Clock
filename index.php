@@ -104,7 +104,7 @@ if(
           <?php echo $Place; ?>
         </div>
         <div class="card-body">
-          <div id="<?php echo strtolower($Place); ?>"></div>
+          <div id="<?php echo $Place; ?>"></div>
         </div><!--/card-body-->
       </div><!--/card-->
       <?php
@@ -154,14 +154,24 @@ function LocatePeople(){
       echo $PeopleString;
     ?>], function( index, person ) {
     $.get( "people/"+person+".txt?"+$.now(), function(data){
-      if(data=='home'){
-        var position = 'home';
-      }else{
-        var position = 'away';
-      }
-      console.log(person+" is "+position+'('+data+')');
+      var place = 'Away';
       
-      $('<div class="person"><a href="#"><!--'+person+'<br>--><img src="/img/'+person.toString().toLowerCase()+'.jpg" alt=""></a></div>').appendTo("#"+position);
+      <?php
+        foreach($Places as $Place => $Array){
+      ?>
+      
+      if(data=='<?php echo $Place; ?>'){
+        place = '<?php echo $Place; ?>';
+      }
+      
+      <?php
+        }
+      ?>
+      
+      
+      console.log(person+" is "+place+'('+data+')');
+      
+      $('<div class="person"><a href="#"><!--'+person+'<br>--><img src="/img/'+person.toString().toLowerCase()+'.jpg" alt=""></a></div>').appendTo("#"+place);
 
       ResizePeople();
 
