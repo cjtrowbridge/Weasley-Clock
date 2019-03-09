@@ -14,7 +14,7 @@ if(
   if(
     isset( $People[ $_GET['person'] ] ) &&
     isset( $Places[ $_GET['place'] ] ) &&
-    ( $People[ $_GET['person']['Key'] == $_GET['key'] )
+    ( $People['person'][ $_GET['Key'] == $_GET['key'] )
   ){
     //"Away" includes transit between routers. Everyone becomes away in between destinations. Maybe another name would be better(?)
     
