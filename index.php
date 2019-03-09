@@ -137,6 +137,7 @@ function LocatePeople(){
         $PeopleString .= "'".$Person."', ";
       }
       $PeopleString = rtrim($PeopleString, ", ");
+      echo $PeopleString;
     ?>], function( index, person ) {
     $.get( "people/"+person+".txt?"+$.now(), function(data){
       if(data=='home'){
