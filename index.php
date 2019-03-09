@@ -140,7 +140,7 @@ if(
 
 function LocatePeople(){
   
-  $('.person').move();
+  $('.person').remove();
 
   $('#home').html('');
   $('#away').html('');
