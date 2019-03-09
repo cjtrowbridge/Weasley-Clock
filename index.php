@@ -6,6 +6,10 @@ if(file_exists('Config.php')){
   die('Create Config.php from Config.sample.php');
 }
 
+if(!(file_exists('people/log.txt'))){
+  file_put_contents('people/log.txt','');
+}
+
 if(
   isset($_GET['key']) &&
   isset($_GET['person']) &&
@@ -136,7 +140,7 @@ if(
 
 function LocatePeople(){
   
-  $('<div class="person">').remove();
+  $('.person').move();
 
   $('#home').html('');
   $('#away').html('');
