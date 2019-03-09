@@ -11,6 +11,13 @@ if(
   isset($_GET['person']) &&
   isset($_GET['place'])
 ){
+  
+  foreach($Places as $Key => $Value){
+    if(strtolower($Key)==strtolower($_GET['place'])){
+      $_GET['place']=$Key;
+    }
+  }
+  
   if(
     isset( $People[ $_GET['person'] ] ) &&
     isset( $Places[ $_GET['place'] ] ) &&
