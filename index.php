@@ -95,23 +95,22 @@ if(
     </div>
     
     <div class="col-12 col-md-8">
-      <div class="card">
+      
+      <?php
+        foreach($Places as $Place => $Array){
+      ?>
+      <div class="card mb-3">
         <div class="card-header">
-          Home
+          <?php echo $Place; ?>
         </div>
         <div class="card-body">
-          <div id="home"></div>
+          <div id="<?php echo strtolower($Place); ?>"></div>
         </div><!--/card-body-->
       </div><!--/card-->
-      <br>
-      <div class="card">
-        <div class="card-header">
-          Away
-        </div>
-        <div class="card-body">
-          <div id="away"></div>
-        </div><!--/card-body-->
-      </div><!--/card-->
+      <?php
+        }
+      ?>
+      
     </div><!--/col-12  col-md-4-->
     
     <div class="col-12 col-md-4">
