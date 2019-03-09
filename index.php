@@ -183,7 +183,7 @@ function LocatePeople(){
 }
 
 function ResizePeople(){
-  $(".person").width($("#Away").width()/2-20);
+  $(".person").width( ($("#Away").width()-20) /2);
 
   $( ".person" ).each(function( index ) {
     $(this).height($(this).width());
