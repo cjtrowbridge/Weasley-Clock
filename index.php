@@ -22,7 +22,7 @@ if(
     isset( $People[ $_GET['person'] ] ) &&
     isset( $Places[ $_GET['place'] ] ) &&
     ( 
-      $People[ $_GET['person'] ][ $_GET['Key'] ]
+      $People[ $_GET['person'] ][ 'Key' ]
       == $_GET['key'] 
     )
   ){
