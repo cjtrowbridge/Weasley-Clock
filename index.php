@@ -1,9 +1,9 @@
 <?php
 
-if(file_exists('Key.php')){
-  include('Key.php');
+if(file_exists('Config.php')){
+  include('Config.php');
 }else{
-  die('Create Key.php from Key.sample.php');
+  die('Create Config.php from Config.sample.php');
 }
 
 if(
