@@ -12,6 +12,10 @@ $People = array(
 );
 
 $Places = array(
-  'Home',
-  'Away'
+  'Home' => array(
+  
+  ),
+  'Away' => array(
+    
+  )
 );
