@@ -16,8 +16,27 @@ if(
     isset( $Places[ $_GET['place'] ] ) &&
     ( $People['Key']==$_GET['key'] )
   ){
-    echo '<p>Updating <a href="people/'.$_GET['person'].'.txt">people/'.$_GET['person'].'.txt</a> to '.$_GET['place'].'...</p>';
-    var_dump(file_put_contents('people/'.$_GET['person'].'.txt',$_GET['place']));
+    //"Away" includes transit between routers. Everyone becomes away in between destinations. Maybe another name would be better(?)
+    
+    $LogEntry = '<p>'.$_GET['person'];
+    if(strtolower($_GET['place'])=='away'){
+      $LogEntry .= " went away.";
+    }else{
+      $LogEntry .= " arrived at ".$_GET['place'].".";
+    }
+    $LogEntry .= '</p>';
+    
+    file_put_contents('people/'.$_GET['person'].'.txt',$_GET['place']);
+    
+    if(file_exists('people/log.txt')){
+      $Log = file_get_contents('people/log.txt');
+    }else{
+      $Log='';
+    }
+    $Log = $LogEntry.PHP_EOL.$Log;
+    
+    file_put_contents('people/log.txt',$Log);
+      
     die('<p>Done.</p>');
   }
 }
@@ -112,7 +131,13 @@ function LocatePeople(){
   }
   
   console.log("Checking...");
-  $.each([ 'Ben','Zach', 'Jenny', 'CJ' ], function( index, person ) {
+  $.each([<?php
+      $PeopleString='';  
+      foreach($People as $Person => $Array){
+        $PeopleString .= "'".$Person."', ";
+      }
+      $PeopleString = rtrim($PeopleString, ", ");
+    ?>], function( index, person ) {
     $.get( "people/"+person+".txt?"+$.now(), function(data){
       if(data=='home'){
         var position = 'home';
